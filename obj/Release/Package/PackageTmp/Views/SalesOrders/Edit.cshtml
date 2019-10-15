@@ -1,0 +1,105 @@
+﻿@model FossERp.Models.SalesOrder
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <!-- Horizontal Form -->
+                @using (Html.BeginForm("Create", "SalesOrders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.SalesOrderID)
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn text-white btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Orders</button>
+
+                            </h3>
+
+                            <a href="/SalesOrders/Index" class="btn text-white btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Lead ID</label>
+                                    @Html.DropDownList("LeadID", null, new { @class = "form-control select2 select2-hidden-accessible ", @Style = "width: 100%;", tabindex = "-1;" })
+                                    @Html.ValidationMessageFor(model => model.LeadID, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Sales Person</label>
+                                    @Html.EditorFor(model => model.SalesPerson, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SalesPerson, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Sales Confirmation Date </label>
+                                    @Html.EditorFor(model => model.SaleConfirmationDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SaleConfirmationDate, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Company Name</label>
+                                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Total Price </label>
+                                    @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">MIB Status</label>
+                                    @Html.EditorFor(model => model.MIBStatus, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MIBStatus, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">MIB Hold </label>
+
+                                    @Html.EditorFor(model => model.MIBHold, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.MIBHold, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Activation & Invoice Status</label>
+                                    @Html.EditorFor(model => model.activation, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.activation, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-footer">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Orders</button>
+
+                            </h3>
+
+                            <a href="/SalesOrders/Index" class="btn  btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- general form elements disabled -->
+                    <!-- /.card -->
+                }
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

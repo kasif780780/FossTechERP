@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "fosstech Erp";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+
+<section class="content">
+    <div class="row mt-5">
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/Leads/Create" class="small-box-footer font-size-4">Create New  <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.LeadCount</h6>
+
+                    <p> Leads</p>
+                </div>
+                <div class="icon mt-3">
+                    <i class="fa fa-line-chart"></i>
+                </div>
+                <a href="/Leads/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/SalesOrders/Create" class="small-box-footer">Create New <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.order</h6>
+
+                    <p>Orders</p>
+                </div>
+                <div class="icon mt-3">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/SalesOrders/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/Products/Create" class="small-box-footer">Create New <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.product</h6>
+
+                    <p> Products</p>
+                </div>
+                <div class="icon mt-3">
+                    <i class="fa fa-barcode"></i>
+                </div>
+                <a href="/Products/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/Payrolls/Index" class="small-box-footer">Create New <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.pyroll</h6>
+
+                    <p>Payrolls</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-money"></i>
+                </div>
+                <a href="/Payrolls/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/Employees/Create" class="small-box-footer">Create New <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.emp</h6>
+
+                    <p>Employee</p>
+                </div>
+                <div class="icon mt-4">
+                    <i class="fa fa-users"></i>
+                </div>
+                <a href="/Employees/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/Expenses/Create" class="small-box-footer">Create New <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.expense</h6>
+
+                    <p>Expenses</p>
+                </div>
+                <div class="icon mt-4">
+                    <i class="fa fa-sort-amount-desc"></i>
+                </div>
+                <a href="/Expenses/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <a href="/Orders/Index" class="small-box-footer font-size-4">Create New  <i class="fa fa-plus-circle" style="font-size:30px;"></i></a>
+                <div class="inner">
+                    <h6>@ViewBag.invoice</h6>
+
+                    <p> Invoice</p>
+                </div>
+                <div class="icon mt-3">
+                    <i class="fa fa-print"></i>
+                </div>
+                <a href="/Orders/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>

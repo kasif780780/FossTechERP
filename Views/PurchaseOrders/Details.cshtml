@@ -1,0 +1,60 @@
+﻿@model FossERp.Models.PurchaseOrder
+@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Orders Details</h4>
+                    <a href="/Orders/Index" class="btn btn-info">Back to Page</a>
+                    <table class="table table-responsive">
+                        <tbody>
+                            <tr>
+                                <td>Vendor Name : @Model.Vendor.Name @Model.Vendor.EmailAddress</td>
+                                @*<td>Address : @item.Address </td>*@
+                                <td>Order Date : @Model.Date</td>
+                                <td>Address:@Model.Vendor.Address</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-responsive ">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Total</th>
+
+                            </tr>
+                        </thead>
+                        @*<span class="pull-right" style="margin-right:100px;"><strong>Total Bill :  </strong> @totalBill</span>*@
+                        <tbody>
+                            @{
+                                decimal totalBill = 0;
+                            }
+                            @foreach (var product in Model.Products)
+                            {
+                                <tr>
+                                    <th scope="row">@product.Product.ProductName</th>
+                                    <th>@product.Qty</th>
+                                    <th>@product.Product.UnitPrice</th>
+                                    <th>@(product.Product.UnitPrice * product.Qty)</th>
+                                </tr>
+                                totalBill += (product.Product.UnitPrice * product.Qty);
+                            }
+
+                        </tbody>
+                    </table>
+                    <span class="pull-right m-3" style="margin-right:100px;"><strong>Total Bill :  </strong> @totalBill</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

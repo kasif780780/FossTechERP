@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FossERp.Models.Vendor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OpeningBalance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OpeningBalance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.VendorID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.VendorID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.VendorID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+</div>
+</div>
+</section>

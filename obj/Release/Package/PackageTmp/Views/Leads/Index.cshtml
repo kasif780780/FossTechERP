@@ -1,0 +1,105 @@
+﻿
+@model PagedList.IPagedList<FossERp.Models.Lead>
+@using PagedList.Mvc;
+@using FossERp.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+<link href="https://fonts.googleapis.com/css?family=Maitree&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<style>
+    .table td, .table th {
+        padding: 6px 4px;
+    }
+
+    .table td {
+        font-size: 13px;
+    }
+
+    .heading-font {
+        font-family: 'Maitree', serif;
+    }
+</style>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <a href="/Leads/Create" class="btn btn-primary">
+                                <i class="fa fa-plus">Add New</i>
+                            </a>
+                        </h3>
+
+                        <div class="card-tools">
+                           
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <form action="/Leads/Index" method="post">
+                                    <input type="text" id="SearchString" name="SearchString" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append" style="margin-left: 109px;">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body  table-striped table-responsive p-0">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr class="bg-info">
+                                    <th>Lead ID</th>
+                                    <th>Created Date</th>
+                                    <th>Company Name</th>
+                                    <th>Contact Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>dsfjsdf</th>
+                                    <th>dfdsj</th>
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td><span> FT-@DateTime.Now.Year</span>@Html.DisplayFor(modelItem => item.LeadID)</td>
+                                    <td>  @Html.DisplayFor(modelItem => item.LeadCreationDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ContactName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td>  @Html.DisplayFor(modelItem => item.Mobile)</td>
+                                    <td>  @Html.ActionLink("Edit", "Edit", new { id = item.LeadID })</td>
+                                    <td> @Html.ActionLink("Details", "Details", new { id = item.LeadID })</td>
+                                    <td>@Html.ActionLink("Delete", "Delete", new { id = item.LeadID })</td>
+                                </tr>
+                                }
+
+                                </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-header">
+                        <h5 class="card-title"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h5>
+
+                        <div class="card-tools">
+                            <ul class="pagination pagination-sm  float-right" style="margin-top:-10px; margin-right:4px;">
+                                @Html.PagedListPager(Model, page => Url.Action("Index",
+     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+ 

@@ -1,0 +1,139 @@
+﻿@model FossERp.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://fonts.googleapis.com/css?family=Maitree&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900&display=swap" rel="stylesheet">
+<style>
+    .tex-white {
+        background-color: lightseagreen;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 18px;
+        margin-right: 201px;
+        color: white;
+    }
+
+        .tex-white a {
+            color: white;
+        }
+    h6 {
+        font-size: 13px;
+        font-family: 'Maitree', serif;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 13px;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-5">
+                <div class="card-body"> 
+                    <div class="row border-bottom mt-5">
+
+                        <div class="col-lg-8 col-sm-12 col-md-8 ml-auto mr-auto">
+                            @*<img@Url.Content(Model.ImagePath) src="@Url.Content(Model.ImagePath)" class="thumbnail">*@
+                            <img src="@Url.Content(Model.ImagePath)" class="img-fluid" style="width: 164px;
+    height: 144px;" />
+                            <h1>@Html.DisplayFor(model => model.FullName)</h1>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <p class="tex-white">
+                                <span><i class="fa fa-edit"></i></span>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID })
+                            </p>
+                            <a href="/Employees/Index" style="margin-left: 136px;
+    margin-top: -98px;" class="btn  btn-outline-secondary btn-flat"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 col-md-3""> <h6>@Html.DisplayNameFor(model => model.JoiningDate)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.JoiningDate)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Mobile)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Mobile)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Email)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Email)</p></div>
+                    </div>
+
+                    <div id="tabs" style="    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -20px;">
+                        <ul>
+                            <li><a href="#tabs-1">Work Information</a></li>
+                            <li><a href="#tabs-2">Private Information</a></li>
+
+                        </ul>
+                        <div id="tabs-1">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Address)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Address)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Location)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Location)</p></div>
+                            </div>
+
+                        </div>
+                        <div id="tabs-2">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.BankAccount)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.BankAccount)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.BankIFSC)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.BankIFSC)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.IdentificationNo)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.IdentificationNo)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.CertificateLavel)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CertificateLavel)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.DateofBirth)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.DateofBirth)</p></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+</div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+

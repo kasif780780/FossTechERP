@@ -1,0 +1,59 @@
+﻿@model FossERp.Models.Vendor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vendor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VendorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

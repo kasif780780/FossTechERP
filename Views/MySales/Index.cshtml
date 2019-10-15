@@ -1,0 +1,57 @@
+﻿@using FossERp.Models
+@model FossERp.ViewModels.SalesOrderViewodels
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table table-striped">
+
+    <tr>
+        <th class="heading-font">
+            Sales Order
+        </th>
+        <th class="heading-font">
+            Create Date
+
+        </th>
+        <th class="heading-font">
+         Company Name
+        </th>
+
+        <th class="heading-font">
+            Email
+        </th>
+       
+        <th class="heading-font">
+           Mobile
+        </th>
+
+
+      
+
+    </tr>
+    @foreach (Lead student in Model._lead)
+    {
+    <tr>
+        <td>
+            @student.LeadID
+        </td>
+        <td>
+            @student.LeadCreationDate
+        </td>
+        <td>
+            @student.CompanyName
+        </td>
+        <td>
+            @student.Email
+        </td>
+        <td>
+            @student.Mobile
+        </td>
+        <td></td>
+
+    </tr>
+    }
+
+</table>

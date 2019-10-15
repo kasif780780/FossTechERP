@@ -1,0 +1,103 @@
+﻿@model FossERp.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
+                    <!-- Horizontal Form -->
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">
+
+                                    <button type="submit" class="btn text-white btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Leads</button>
+
+                                </h3>
+
+                                <a href="/Products/Index" class="btn text-white btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Product Name</label>
+                                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Sales Start Date</label>
+                                        @Html.EditorFor(model => model.SalesStartDate, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.SalesStartDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Unit Price </label>
+                                        @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Tax</label>
+                                        @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Unit </label>
+                                        @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Description</label>
+                                        @Html.TextAreaFor(model => model.Description,  new { @class = "form-control " } )
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="exampleInputEmail1">Is Active</label>
+                                        <div class="checkbox">
+                                            @Html.EditorFor(model => model.IsActive)
+                                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                   
+                                </div>
+                               
+                            </div>
+                            <div class="card-footer">
+                                <h3 class="card-title">
+
+                                    <button type="submit" class="btn btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Products</button>
+
+                                </h3>
+
+                                <a href="/Products/Index" class="btn  btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+                        <!-- /.card -->
+                    }
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+

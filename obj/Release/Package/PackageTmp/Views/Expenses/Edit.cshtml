@@ -1,0 +1,118 @@
+﻿@model FossERp.Models.Expense
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <!-- Horizontal Form -->
+                @using (Html.BeginForm("Edit", "Expenses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn text-white btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save </button>
+
+                            </h3>
+
+                            <a href="/Expenses/Index" class="btn text-white btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1"> Currency </label>
+                                    <select class="form-control" id="Currency" name="Currency">
+                                        <option value="INR">INR</option>
+                                        <option value="USD Dollar">USD</option>
+
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Amount</label>
+                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Purpose </label>
+                                    @Html.EditorFor(model => model.Purpose, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Purpose, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Date Of Spend</label>
+                                    @Html.EditorFor(model => model.DateOfSpend, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfSpend, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Marchant </label>
+                                    @Html.EditorFor(model => model.Marchant, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Marchant, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Category</label>
+                                    <select class="form-control" id="Category" name="Category">
+                                        <option value="Web Hosting">Web Hosting</option>
+                                        <option value="Domain Booking">Domain Booking</option>
+                                        <option value="Facebook Ads">Facebook Ads</option>
+
+                                        <option value="Google Ads">Google Ads</option>
+                                        <option value="Office Rent">Office Rent</option>
+                                        <option value="Light Bill">Light Bill</option>
+                                        <option value="Transport">Transport</option>
+                                        <option value="Food">Food</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Description </label>
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control " })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Upload Bill </label>
+                                    <input type="file" name="file" id="ImagePath" class="form-control" required />
+                                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save </button>
+
+                            </h3>
+
+                            <a href="/Expenses/Index" class="btn  btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- general form elements disabled -->
+                    <!-- /.card -->
+                }
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

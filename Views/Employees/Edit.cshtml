@@ -1,0 +1,156 @@
+﻿@model FossERp.Models.Employee
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <!-- Horizontal Form -->
+                @using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.EmployeeID)
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn text-white btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Leads</button>
+
+                            </h3>
+
+                            <a href="/Employees/Index" class="btn text-white btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Full Name</label>
+                                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Email </label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Mobile</label>
+                                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Job Title </label>
+                                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Position</label>
+                                    @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Address </label>
+                                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control " })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Joining Date</label>
+                                    @Html.EditorFor(model => model.JoiningDate, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Location </label>
+                                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Identification No</label>
+                                    @Html.EditorFor(model => model.IdentificationNo, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.IdentificationNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Gender </label>
+                                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Field of Study</label>
+                                    @Html.EditorFor(model => model.FieldofStudy, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.FieldofStudy, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">BankAccount Details </label>
+                                    @Html.TextAreaFor(model => model.BankAccount, new { @class = "form-control " })
+                                    @Html.ValidationMessageFor(model => model.BankAccount, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Department</label>
+                                    @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Document Details </label>
+                                    @Html.EditorFor(model => model.Document, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Choose Profile Photo(Less then 1 MB) </label>
+                                    <input type="file" name="file" id="ImagePath" class="form-control" required />
+                                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            y
+                        </div>
+                        <div class="card-footer">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Leads</button>
+
+                            </h3>
+
+                            <a href="/Employees/Index" class="btn  btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- general form elements disabled -->
+                    <!-- /.card -->
+                }
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

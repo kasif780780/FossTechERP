@@ -1,0 +1,133 @@
+﻿@model FossERp.Models.Expense
+
+@{
+    ViewBag.Title = "Details";
+
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+}
+
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://fonts.googleapis.com/css?family=Maitree&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900&display=swap" rel="stylesheet">
+<style>
+    .tex-white {
+        background-color: lightseagreen;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 18px;
+        margin-right: 43px;
+        color: white;
+    }
+
+        .tex-white a {
+            color: white;
+        }
+
+    h6 {
+        font-size: 13px;
+        font-family: 'Maitree', serif;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 13px;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12 col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="row border-bottom mt-5">
+
+
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <p class="tex-white">
+                                <span><i class="fa fa-edit"></i></span>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+                            </p>
+                            <a href="/Expenses/Index" style="margin-left: 136px;
+    margin-top: -98px;" class="btn  btn-outline-secondary btn-flat"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12"> <h6>@Html.DisplayNameFor(model => model.Amount)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 "><p class="font-weight-normal"> @Html.DisplayFor(model => model.Amount)</p></div>
+                    </div>
+
+                   
+                    <div class="row mt-2">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12  "> <h6>@Html.DisplayNameFor(model => model.Currency)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 "><p class="font-weight-normal"> @Html.DisplayFor(model => model.Currency)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 "> <h6>@Html.DisplayNameFor(model => model.Purpose)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 "><p class="font-weight-normal"> @Html.DisplayFor(model => model.Purpose)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 "> <h6>@Html.DisplayNameFor(model => model.Marchant)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Marchant)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 "> <h6>@Html.DisplayNameFor(model => model.Category)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 "><p class="font-weight-normal"> @Html.DisplayFor(model => model.Category)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3 col-sm-12 "> <h6>@Html.DisplayNameFor(model => model.Description)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-9 col-sm-12 "><p class="font-weight-normal">@Html.DisplayFor(model => model.Description) </p></div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6">
+            <div class="crad mt-5" style="background-color: #fff;">
+                <div class="card-header"><h6>Bill</h6></div>
+
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                {
+                   <div class="card-body">
+                <img src="@Url.Content(Model.ImagePath)" class="img-fluid"/>
+            </div>
+                }
+                else
+                {
+                    <p>  </p>
+                }
+
+            </div>
+    </div>
+</div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+

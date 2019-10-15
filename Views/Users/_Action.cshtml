@@ -1,0 +1,126 @@
+﻿
+@model FossERp.ViewModels.UserActionModel
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModal">
+                @if (!string.IsNullOrEmpty(Model.ID))
+                {
+
+                    <span>Edit User</span>
+                }
+                else
+                {
+                    <span>Create User</span>
+                }
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formAction">
+                <div class="form-row">
+                    <input type="hidden" name="ID" value="@Model.ID" />
+                    <div class="form-group col-md-6">
+                        <label for="First Name">Full Name</label>
+                        <input class="form-control" name="FullName" placeholder="Name" value="@Model.FullName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Company Name">Email</label>
+                        <input class="form-control" name="Email" placeholder="Company Name" value="@Model.Email">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for=" Phone">UserName</label>
+                        <input class="form-control" name="UserName" placeholder="Phone" value="@Model.UserName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Country</label>
+                        <input class="form-control" name="Country" placeholder="Email" value="@Model.Country">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">Date</label>
+                        <input class="form-control" name="City" placeholder="Rating" valu="@Model.City">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">Company </label>
+                        <input class="form-control" name="Address" placeholder="Status" value="@Model.Address">
+                    </div>
+                </div>
+                @*<div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="First Name">State</label>
+                            <input class="form-control" name="State" placeholder="Rating" valu=@Model.State>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Status">Status </label>
+                            <input class="form-control" name="City" placeholder="City" value=@Model.City>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="First Name">Rating</label>
+                            <input class="form-control" name="Street" placeholder="Street" valu=@Model.Street>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Status">Status </label>
+                            <input class="form-control" name="Zip" placeholder="Zip" value=@Model.Zip>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Ratings, ">Description </label>
+                            <input class="form-control" name="Description" placeholder="Description" value=@Model.Description>
+                        </div>
+
+                    </div>*@
+
+            </form>
+            <div class="errorDiv"></div>
+        </div>
+        <div class="modal-footer">
+            <buttond type="button" class="btn btn-secondary" data-dismiss="modal">Close</buttond>
+            <button id="ActionButton" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $("#ActionButton").click(function () {
+         $.ajax({
+             url: '@Url.Action("Action","Users")',
+             type: "post",
+             data: $("#formAction").serialize()
+        })
+            .done(function
+                (response) {
+                debugger;
+                if (response.Success) {
+                    location.reload();
+
+                }
+                else {
+                    $(".errorDiv").html(response.Message);
+                }
+            })
+    })
+</script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            altFormat: "yy-mm-dd"
+        });
+    });
+</script>

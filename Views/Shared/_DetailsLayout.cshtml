@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/theme/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="~/theme/dist/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/theme/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/theme/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body style="background-color:rgba(0,0,0,.05);">
+    @Html.Partial("_MenuPartial")
+
+    <div class="container">
+
+        @RenderBody()
+    </div>
+
+   
+    @RenderSection("scripts", required: false)
+</body>
+</html>

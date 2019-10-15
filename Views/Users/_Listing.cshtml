@@ -1,0 +1,153 @@
+﻿@model FossERp.ViewModels.UserListingModels
+@{
+    Layout = null;
+}
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <button data-href="/Users/Action" class="data-btn btn btn-primary mb-2" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i>Create</button>
+                @*<button data-href="/Product/Action" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>*@
+                <div class="card-tools mb-3">
+
+                    <form action="/Users/Index" method="post">
+
+
+                        <div class="input-group-append mb-3">
+                            <input type="text" id="searchTerm" name="searchTerm" class="form-control float-right" placeholder="Search">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    @if (Model != null && Model.Users != null && Model.Users.Count() > 0)
+                    {
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        User Name
+                                    </th>
+                                    <th>
+                                        Role
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model.Users)
+                                {
+                                    <tr>
+                                        <td>@user.FullName</td>
+                                        <td>@user.Email</td>
+                                        <td>@user.UserName</td>
+                                        <td>@user.Roles.Count</td>
+                                        <td>
+                                            <button class="data-btn btn btn-success" data-href="@Url.Action("Action", "Users", new { ID = user.Id }) " data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                            <button class="data-btn btn btn-danger" data-href="@Url.Action("Delete", "Users", new { ID = user.Id })" data-toggle="modal" data-target="#exampleModal">Delete</button>
+                                            <button class="data-btn btn btn-info" data-href="@Url.Action("UserRoles", "Users", new { ID = user.Id })" data-toggle="modal" data-target="#exampleModal">Assign Roles</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No Records</p>
+                    }
+                </div>
+                @if (Model.Pager.EndPage > 1)
+                {
+
+                    <nav>
+                        <ul class="pagination pagination-rounded-flat pagination-success">
+                            @if (Model.Pager.CurrentPage > 1)
+                            {
+                                <li class="page-item">
+                                    <a class="page-item" href="@Url.Action("Index","Users",new {page=1,searchTerm=Model.SearchTerm,RoleID=Model.RoleID })">
+                                    </a>
+                                </li>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index","Users",new {page=Model.Pager.CurrentPage-1,searchTerm=Model.SearchTerm,RoleID=Model.RoleID })">
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                            }
+                            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                            {
+                                <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index","Users",new {page=page,searchTerm=Model.SearchTerm,RoleID=Model.RoleID })">@page</a>
+                                </li>
+                            }
+                            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index","Users",new {page=Model.Pager.CurrentPage+1 })">
+                                        Next
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("Index","Users",new { page=Model.Pager.TotalPages})">
+                                        Last
+                                        <i class="fa fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                }
+            </div>
+        </div>
+        </div>
+    </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(".data-btn").click(function () {
+
+                $.ajax({
+                    url: $(this).attr("data-href"),
+                })
+
+                    .done(function
+
+                        (response) {
+                        $("#exampleModal .modal-dialog").html(response);
+                    })
+            })
+
+            // $(".data-btn").click(function () {
+
+            //    $.ajax({
+            //        url: $(this).attr("data-href"),
+            //    })
+            //        .done(function
+            //            (response) {
+            //            $("#exampleModal .modal-dialog").html(response);
+            //        })
+            //})
+
+            $('#order-listing').on("click", ".data-btn", function (event) {
+
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("data-href"),
+                })
+                    .done(function
+                        (response) {
+                        $("#exampleModal .modal-dialog").html(response);
+                    })
+            });
+        </script>

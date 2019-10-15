@@ -1,0 +1,151 @@
+﻿@model FossERp.Models.Lead
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_DetailsLayout.cshtml";
+    
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://fonts.googleapis.com/css?family=Maitree&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900&display=swap" rel="stylesheet">
+<style>
+    .tex-white {
+        background-color: lightseagreen;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 18px;
+        margin-right:211px;
+        color:white;
+
+    }
+    .tex-white a {
+       
+        color: white;
+    }
+    h6 {
+        font-size: 13px;
+        font-family: 'Maitree', serif;
+        font-weight:bold;
+    }
+    p {
+        font-size: 13px;
+         font-family: 'Roboto', sans-serif;
+    }
+</style>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="row border-bottom mt-5">
+                        <div class="col-8">
+                            <h1><span>FT-@DateTime.Now.Year-000</span>@Html.DisplayFor(model => model.LeadID)</h1>
+                        </div>
+                        <div class="col-4">
+                            <p class="tex-white">
+                                <span><i class="fa fa-edit"></i></span>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.LeadID })
+                            </p>
+                            <a href="/Leads/Index" style="margin-left: 136px;
+    margin-top: -98px;" class="btn  btn-outline-secondary btn-flat"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                           
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.LeadCreationDate)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.LeadCreationDate)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.ContactName)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.ContactName)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Email)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Email)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.CompanyName)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CompanyName)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.CompanyEmail)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CompanyEmail)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.CompanyMobile)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CompanyMobile)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Address)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Address)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.LandMark)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.LandMark)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.City)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.City)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Pincode)</h6></div>
+                        <div class="col-lg-9 col-sm-12 col-md-3"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Pincode)</p></div>
+                    </div>
+                    <div id="tabs" style="    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -20px;">
+                        <ul>
+                            <li><a href="#tabs-1">Additional Information</a></li>
+                            <li><a href="#tabs-2">Optional Products</a></li>
+
+                        </ul>
+                        <div id="tabs-1">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.LeadCreatorName)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.LeadCreatorName)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.Source)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Source)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.BusinessCategory)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.BusinessCategory)</p></div>
+                            </div>
+                        </div>
+                        <div id="tabs-2">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-12 col-md-3"> <h6>@Html.DisplayNameFor(model => model.OurProduct)</h6></div>
+                                <div class="col-lg-9 col-sm-12 col-md-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.OurProduct)</p></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

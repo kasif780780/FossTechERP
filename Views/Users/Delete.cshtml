@@ -1,0 +1,39 @@
+﻿@model FossERp.ViewModels.UserActionModel
+ 
+<h2>Delete Employee</h2>
+@using (Html.BeginForm("delete", "Users", FormMethod.Post, new { id = "popupForm" }))
+
+{
+    @Html.HiddenFor(a => a.ID)
+    <div class="form-group">
+        <label>First Name</label>
+        <p>@Model.FullName</p>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <p>@Model.Country</p>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <p>@Model.Email</p>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <p>@Model.UserName</p>
+    </div>
+    <div class="form-group">
+        <label>LeadSource</label>
+        <p>@Model.Country</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.City</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.Address</p>
+    </div>
+
+
+    <input type="submit" value="Submit" />
+}

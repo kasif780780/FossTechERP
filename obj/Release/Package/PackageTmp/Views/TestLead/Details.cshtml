@@ -1,0 +1,235 @@
+﻿@model FossERp.Models.Lead
+
+@{
+    ViewBag.Title = "Details";
+   
+   
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Simple Full Width Table</h3>
+
+                    <div class="card-tools">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">«</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="row mt-2">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.LeadCreationDate)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.LeadCreationDate)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.ContactName)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.ContactName)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.Email)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Email)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.CompanyName)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CompanyName)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.CompanyEmail)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CompanyEmail)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.CompanyMobile)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.CompanyMobile)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.Address)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Address)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.LandMark)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.LandMark)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.City)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.City)</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.Pincode)</h6></div>
+                        <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Pincode)</p></div>
+                    </div>
+                    <div id="tabs" style="    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -20px;">
+                        <ul>
+                            <li><a href="#tabs-1">Additional Information</a></li>
+                            <li><a href="#tabs-2">Optional Products</a></li>
+
+                        </ul>
+                        <div id="tabs-1">
+                            <div class="row">
+                                <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.LeadCreatorName)</h6></div>
+                                <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.LeadCreatorName)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.Source)</h6></div>
+                                <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.Source)</p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.BusinessCategory)</h6></div>
+                                <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.BusinessCategory)</p></div>
+                            </div>
+                        </div>
+                        <div id="tabs-2">
+                            <div class="row">
+                                <div class="col-lg-3"> <h6>@Html.DisplayNameFor(model => model.OurProduct)</h6></div>
+                                <div class="col-lg-9"><p class="font-weight-normal"> @Html.DisplayFor(model => model.OurProduct)</p></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    <div>
+                        <h4>Lead</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LeadCreationDate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LeadCreationDate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ContactName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ContactName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Mobile)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Mobile)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CompanyName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CompanyName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CompanyEmail)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CompanyEmail)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CompanyMobile)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CompanyMobile)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Address)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Address)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LandMark)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LandMark)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.City)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.City)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Pincode)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Pincode)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LeadCreatorName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LeadCreatorName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Source)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Source)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.BusinessCategory)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.BusinessCategory)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.OurProduct)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.OurProduct)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.LeadID }) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>

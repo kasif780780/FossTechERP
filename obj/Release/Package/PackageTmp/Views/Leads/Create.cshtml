@@ -1,0 +1,177 @@
+﻿@model FossERp.Models.Lead
+
+@{
+
+
+    ViewBag.Title = "Create";
+    Layout= "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+
+
+    
+
+
+<section class="content">
+    <div class="container-fluid">
+       
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <!-- Horizontal Form -->
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+
+                            <button type="submit" class="btn text-white btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Leads</button>
+
+                        </h3>
+
+                        <a href="/Leads/Index" class="btn text-white btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Lead Creation Date</label>
+                                @Html.EditorFor(model => model.LeadCreationDate, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.LeadCreationDate, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Contact Name</label>
+                                @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Email </label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Company Name</label>
+                                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Company Email </label>
+                                @Html.EditorFor(model => model.CompanyEmail, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.CompanyEmail, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Company Mobile</label>
+                                @Html.EditorFor(model => model.CompanyMobile, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.CompanyMobile, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Address </label>
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control " })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">LandMark</label>
+                                @Html.EditorFor(model => model.LandMark, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.LandMark, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">City </label>
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Pincode</label>
+                                @Html.EditorFor(model => model.Pincode, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Lead Creator Name </label>
+                                @Html.EditorFor(model => model.LeadCreatorName, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.LeadCreatorName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Business Category</label>
+                                @Html.EditorFor(model => model.BusinessCategory, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.BusinessCategory, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Source </label>
+                                @Html.EditorFor(model => model.Source, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.Source, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-6">
+                                <label for="exampleInputEmail1">Product</label>
+                                @Html.EditorFor(model => model.OurProduct, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.OurProduct, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h3 class="card-title">
+
+                            <button type="submit" class="btn btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save Leads</button>
+
+                        </h3>
+
+                        <a href="/Leads/Index" class="btn  btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                    <!-- /.card -->
+                    <!-- general form elements disabled -->
+                    <!-- /.card -->
+                }
+                </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+﻿@model FossERp.Models.Payroll
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <!-- Horizontal Form -->
+                @using (Html.BeginForm("Create", "PayRolls", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn text-white btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save</button>
+
+                            </h3>
+
+                            <a href="/Payrolls/Index" class="btn text-white btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Employee</label>
+                                    @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control " })
+                                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Payment Mode</label>
+                                    <select class="form-control" id="PaymentType" name="PaymentType">
+                                        <option value="Cheque">Cheque</option>
+                                        <option value="Net Banking">Net Banking</option>
+                                        <option value="Cash">Cash</option>
+
+
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Amount</label>
+                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">Payment Date</label>
+                                    @Html.EditorFor(model => model.PaymentDate, new { htmlAttributes = new { @class = "form-control " } })
+                                    @Html.ValidationMessageFor(model => model.PaymentDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="exampleInputEmail1">
+                                        Upload Receipt
+                                    </label>
+                                    <input type="file" name="file" id="ImagePath" class="form-control " />
+                                    @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <h3 class="card-title">
+
+                                <button type="submit" class="btn btn-outline-secondary btn-flat"><i class="fa fa-save mr-1"></i>Save </button>
+
+                            </h3>
+
+                            <a href="/Payrolls/Index" class="btn  btn-outline-secondary btn-flat float-right" style="margin-top: -50px;"><i class="fa fa-undo mr-1" aria-hidden="true"></i>Back</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- general form elements disabled -->
+                    <!-- /.card -->
+                }
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

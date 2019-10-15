@@ -1,0 +1,293 @@
+﻿@using FossERp.Models
+@model PagedList.IPagedList<FossERp.Models.Order>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    var leads = (IEnumerable<Lead>)ViewData["leads"];
+    var products = (IEnumerable<Product>)ViewData["products"];
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<section class="content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <button  class="btn btn-primary" onclick="addNewOrder()">
+                            <i class="fa fa-plus">Add New</i>
+                        </button>
+                    </h3>
+
+                    <div class="card-tools">
+
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <form action="/Orders/Index" method="post">
+                                <input type="text" id="SearchString" name="SearchString" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append" style="margin-left: 109px;">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body  table-striped table-responsive p-0">
+                    <table id="order-listing" class="table dataTable no-footer table-responsive" role="grid" aria-describedby="order-listing_info">
+                        <thead>
+                            @*<tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="order-listing"  aria-sort="ascending" aria-label="Order #: activate to sort column descending" style="width: 66px;">Order #</th>
+                    <th class="sorting" tabindex="0" aria-controls="order-listing" aria-label="Customer: activate to sort column ascending" style="width: 82px;">Date</th>
+                    <th class="sorting" tabindex="0" aria-controls="order-listing"  aria-label="Base Price: activate to sort column ascending" style="width: 90px;">Company Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="order-listing" aria-label="Base Price: activate to sort column ascending" style="width: 90px;">Action </th>
+                </tr>*@
+                            <tr>
+                                <th>#ID</th>
+                                <th>Date</th>
+                                <th>Company</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        @if (Model.Count() != 0)
+                        {
+                            foreach (var order in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@order.Id</td>
+                                        <td> @order.Date</td>
+
+
+                                        <td>@order.Lead.CompanyName</td>
+
+
+                                        @{
+                                            decimal totalAmount = 0;
+                                        }
+                                        @foreach (var product in order.Products)
+                                        {
+                                            totalAmount += (product.Product.UnitPrice * product.Qty);
+                                        }
+
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { id = order.Id }) |
+
+                                            @Html.ActionLink("Print", "PrintInvoice", new { id = order.Id })|
+                                            @Html.ActionLink("Delete", "Delete", new { id = order.Id }) |
+
+                                        </td>
+
+
+                                    </tr>
+
+                                </tbody>
+
+                            }
+                        }
+
+                        else
+                        {
+                            {
+                                <div class="card">
+                                    <h3 style="color:red;">Empty!</h3>
+                                </div>
+
+                            }
+                        }
+                    </table>
+                    <div class="card-header">
+                           <h5 class="card-title"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h5>
+
+                           <div class="card-tools">
+                               <ul class="pagination pagination-sm  float-right" style="margin-top:-10px; margin-right:4px;">
+                                   @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                               </ul>
+                           </div>
+                       </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+                   
+
+
+                    <div class="modal fade" id="newOrderModal">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                                    <h4>Add New Order</h4>
+                                </div>
+                                <form id="NewOrderForm">
+                                    <div class="modal-body">
+                                        @*Customer Details*@
+                                        <h5 style="color:#ff6347">Customer Details</h5>
+                                        <hr />
+                                        <div class="form-horizontal">
+                                            <input type="hidden" id="CustomerId" />
+                                            <div class="form-group">
+                                                <label class="control-label col-md-12">
+                                                    Select Customer
+                                                </label>
+                                                <div class="col-md-12">
+                                                    <select id="customer" class="form-control" style="color:black;">
+                                                        @foreach (var lead in leads)
+                                                        {
+                                                            <option value="@lead.LeadID">@lead.CompanyName</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*Order Details*@
+                                        <h5 style="margin-top:10px;color:#ff6347">Order Details</h5>
+                                        <hr />
+                                        <div class="form-horizontal">
+                                            <input type="hidden" id="OrderId" />
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">
+                                                    Select products
+                                                </label>
+                                                <div class="col-md-12">
+                                                    <select id="product" class="form-control">
+                                                        @foreach (var product in products)
+                                                        {
+                                                            <option value="@product.Id">@product.ProductName</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+
+                                                <div class="col-md-6">
+                                                    <label>
+                                                        Quantity
+                                                    </label>
+                                                    <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a id="addToList" href="#" class="btn btn-primary align-items-center mt-2 mb-2">Add To List</a>
+                                                </div>
+                                            </div>
+                                            <table id="detailsTable" class="table table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:30%">Product</th>
+                                                        <th style="width:20%">Unit Price</th>
+                                                        <th style="width:15%">Quantity</th>
+                                                        <th style="width:25%">Amount</th>
+                                                        <th style="width:10%">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button id="saveOrder" type="submit" class="btn btn-danger">Save Order</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    @section scripts{
+                        <script>
+                            //Show Modal.
+                            function addNewOrder() {
+                                $("#newOrderModal").modal();
+                            }
+                            //Add Multiple Order.
+                            $("#addToList").click(function (e) {
+                                e.preventDefault();
+                                quantity = $("#quantity").val(),
+                                    detailsTableBody = $("#detailsTable tbody");
+                                //
+                                $.ajax({
+                                    contentType: 'application/json; charset=utf-8',
+                                    dataType: 'json',
+                                    type: 'Get',
+                                    url: `/products/show/${$("#product").val()}`,
+                                    success: function (result) {
+                                        //                        console.log(result);
+                                        var productItem = '<tr><td>' + result.ProductName + '</td><td>' + result.UnitPrice + '</td><td>' + quantity + '</td><td>' + (parseFloat(result.UnitPrice) * parseInt(quantity)) + '</td><td style="display: none;">' + result.Id + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td></tr>';
+                                        detailsTableBody.append(productItem);
+                                        //                                       alert(result);
+                                        //                        location.reload();
+                                    },
+                                    error: function () {
+                                        alert("Error!")
+                                    }
+                                });
+                                //            var productItem = '<tr><td>' + productName + '</td><td>' + quantity + '</td><td>' + price + '</td><td>' + (parseFloat(price) * parseInt(quantity)) + '</td><td><a data-itemId="0" href="#" class="deleteItem">Remove</a></td></tr>';
+                                //            detailsTableBody.append(productItem);
+                                //            clearItem();
+                            });
+                            //After Add A New Order In The List, Clear Clean The Form For Add More Order.
+                            function clearItem() {
+                                $("#productName").val('');
+                                $("#price").val('');
+                                $("#quantity").val('');
+                            }
+                            // After Add A New Order In The List, If You Want, You Can Remove It.
+                            $(document).on('click',
+                                'a.deleteItem',
+                                function (e) {
+                                    e.preventDefault();
+                                    var $self = $(this);
+                                    if ($(this).attr('data-itemId') == "0") {
+                                        $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800,
+                                            function () {
+                                                $(this).remove();
+                                            });
+                                    }
+                                });
+                            //After Click Save Button Pass All Data View To Controller For Save Database
+                            function saveOrder(data) {
+                                return $.ajax({
+                                    contentType: 'application/json; charset=utf-8',
+                                    dataType: 'json',
+                                    type: 'POST',
+                                    url: "/Orders/SaveOrder",
+                                    data: data,
+                                    success: function () {
+                                        //                alert("Success");
+                                        location.reload();
+                                    },
+                                    error: function () {
+                                        alert("Error!")
+                                    }
+                                });
+                            }
+                            //Collect Multiple Order List For Pass To Controller
+                            $("#saveOrder").click(function (e) {
+                                e.preventDefault();
+                                var orderArr = [];
+                                orderArr.length = 0;
+                                $.each($("#detailsTable tbody tr"),
+                                    function () {
+                                        orderArr.push({
+                                            ProductId: parseInt($(this).find('td:eq(4)').html()),
+                                            Qty: parseInt($(this).find('td:eq(2)').html()),
+                                        });
+                                    });
+                                var data = JSON.stringify({
+                                    LeadID: $("#customer").val(),
+                                    Products: orderArr
+                                });
+                                console.log(data);
+                                $.when(saveOrder(data)).then(function (response) {
+                                    console.log(response);
+                                }).fail(function (err) {
+                                    console.log(err);
+                                });
+                            });</script>
+                    }

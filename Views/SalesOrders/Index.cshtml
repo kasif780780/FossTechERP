@@ -1,0 +1,219 @@
+﻿
+@model PagedList.IPagedList<FossERp.Models.SalesOrder>
+@using PagedList.Mvc;
+@using FossERp.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<link href="https://fonts.googleapis.com/css?family=Maitree&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<style>
+    .table td, .table th {
+        padding: 6px 4px;
+    }
+
+    .table td {
+        font-size: 13px;
+    }
+
+    .heading-font {
+        font-family: 'Maitree', serif;
+    }
+</style>
+
+@*<div class="row mt-4">
+    <div class="col-lg-7">
+        <h6>Leads</h6>
+    </div>
+    <div class="col-lg-5">
+        @using (Html.BeginForm())
+        {
+            <p style="    max-width: 247px;
+    margin-bottom: -22px;">
+                Find by name: @Html.TextBox("SearchString")
+                <input type="submit" value="Search" />
+            </p>
+        }
+        <a href="/SalesOrders/Index" class="btn btn-success" style="margin-left: 263px;
+    margin-top: -11px;"><i class="fas fa-redo-alt">Reload</i></a>
+    </div>
+</div>
+<p>
+    <a href="/SalesOrders/Create" class="btn btn-info" style="border-radius:0px;">Create</a>
+</p>
+<table class="table table-striped">
+    <thead>
+
+
+        <tr class="bg-info">
+            <th class="heading-font">
+                Sales Order
+            </th>
+            <th class="heading-font" scope="col">
+                S.O Confirmation Date
+
+
+            </th>
+
+            <th class="heading-font" scope="col">
+                Company Name
+
+            </th>
+
+            <th class="heading-font" scope="col">
+                Total Price
+            </th>
+
+            <th class="heading-font" scope="col">
+                MIB Status
+            </th>
+            <th class="heading-font" scope="col">
+                MIB Hold Reason
+            </th>
+            <th class="heading-font" scope="col">
+                Activation & Invoice Status
+            </th>
+            <th class="heading-font" scope="col">
+                Lead ID
+            </th>
+
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row">
+                    <span> FT-@DateTime.Now.Year-000</span>@Html.DisplayFor(modelItem => item.SalesOrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaleConfirmationDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MIBStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MIBHold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activation)
+                </td>
+                <td>
+                    <span> FT-@DateTime.Now.Year-@DateTime.Now.Day-000</span>@Html.DisplayFor(modelItem => item.Lead.LeadID)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SalesOrderID })
+
+                </td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.SalesOrderID })
+
+                </td>
+                <td> @Html.ActionLink("Delete", "Delete", new { id = item.SalesOrderID })</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <a href="/SalesOrders/Create" class="btn btn-primary">
+                                <i class="fa fa-plus">Add New</i>
+                            </a>
+                        </h3>
+
+                        <div class="card-tools">
+
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <form action="/SalesOrders/Index" method="post">
+                                    <input type="text" id="SearchString" name="SearchString" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append" style="margin-left: 109px;">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body  table-striped table-responsive p-0">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr class="bg-info">
+                                    <th>Sales Order</th>
+                                    <th>S.O. Confirmation Date</th>
+                                    <th>Company Name</th>
+                                    <th>Total Price</th>
+                                    <th>MIB Status</th>
+                                    <th>Activation & Invoice Status</th>
+                                    <th>IsActive</th>
+                                    <th>Lead ID</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+
+                                    <td> <span> FT-@DateTime.Now.Year-000</span>@Html.DisplayFor(modelItem => item.SalesOrderID)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SaleConfirmationDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                                    <td>  @Html.DisplayFor(modelItem => item.MIBStatus)</td>
+                                    <td>  @Html.DisplayFor(modelItem => item.MIBHold)</td>
+                                    <td>  @Html.DisplayFor(modelItem => item.activation)</td>
+                                    
+                                    <td>  @Html.ActionLink("Edit", "Edit", new { id = item.SalesOrderID })</td>
+                                    <td> @Html.ActionLink("Details", "Details", new { id = item.SalesOrderID })</td>
+                                    <td>@Html.ActionLink("Delete", "Delete", new { id = item.SalesOrderID })</td>
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-header">
+                                           <h5 class="card-title"> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h5>
+
+                                           <div class="card-tools">
+                                               <ul class="pagination pagination-sm  float-right" style="margin-top:-10px; margin-right:4px;">
+                                                   @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                               </ul>
+                                           </div>
+                                       </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>

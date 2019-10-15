@@ -1,0 +1,206 @@
+﻿@model FossERp.Models.Order
+@using FossERp.Models
+@{
+    Layout = null;
+}
+@{
+    var customers = (IEnumerable<Lead>)ViewData["leads"];
+    var products = (IEnumerable<Product>)ViewData["products"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .row {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="6">
+                <h2>ASHMA ELECTRICALS SOLUTION</h2>
+                <p class="text-justify">
+                    Company Id : 09BIKPN4473K1ZM <br />
+
+                    Barwan Mehnajpur<br / >
+                    Mehnajpur Devgoan Road  Contact 7317243175 <br />
+                    Azamgarh Uttar Pradesh<br />
+                    India 276203<br />
+                    GSTIN 09BIKPN4473K1ZM
+                </p>
+
+
+            </td>
+            <td colspan="5">Tax Invoice</td>
+        </tr>
+        <tr>
+            <th scope="row" colspan="6">
+                <p>Invoice Number                 <span style="margin-left:180px;">:@Model.OrderNumber</span></p>
+                <p>Invoice Date        <span style="margin-left:90px;">: @Model.Date</span></p>
+                <p>Terms               <span style="margin-left:140px;">:Due on Reciept</span></p>
+                <p>Due Date            <span style="margin-left:114px;">:@Model.Date</span></p>
+            </th>
+            <td colspan="5">Place Of Supply <span></span></td>
+
+
+        </tr>
+        <tr>
+            <th scope="col" colspan="6">
+                Bill To :
+            </th>
+
+
+            <th scope="col" colspan="5">
+                Ship To :
+            </th>
+        </tr>
+        @*<tr>
+            <td colspan="6">
+             
+                <h5> @Model.Customer.Company</h5>
+                Company Id : @Model.Customer.FirstName <br />
+                @Model.Customer.Street<br />
+               @Model.Customer.City<br />
+              @Model.Customer.State<br />
+                @Model.Customer.Country<br />
+                @Model.Customer.Phone<br />
+                @Model.Customer.Email
+
+               
+            </td>
+            <td colspan="6">
+
+                <h5> @Model.Customer.Company</h5>
+                Company Id : @Model.Customer.FirstName <br />
+                @Model.Customer.Street<br />
+                @Model.Customer.City<br />
+                @Model.Customer.State<br />
+                @Model.Customer.Country<br />
+                @Model.Customer.Phone<br />
+                @Model.Customer.Email
+            </td>
+        </tr>*@
+        <tr>
+            <th scope="col" rowspan="2">#</th>
+            <th scope="col" rowspan="2">Item & Description</th>
+            <th scope="col" rowspan="2">Qty</th>
+            <th scope="col" rowspan="2">Rate</th>
+            <th scope="col" colspan="2">
+                CGST %
+
+
+            </th>
+            <th scope="col" colspan="2">SGST %</th>
+
+
+            <th scope="col" rowspan="2">Amount</th>
+
+        </tr>
+        <tr>
+            <th>%</th>
+            <th>Amount </th>
+            <th>%</th>
+            <th>Amount </th>
+
+
+        </tr>
+        @{
+            decimal totalBill = 0;
+
+            decimal cgst = 0;
+            decimal cgstTax = 0;
+            decimal sgst = 0;
+            decimal sgstTax = 0;
+            decimal balanceDue = 0;
+            decimal NetGST = 0;
+            decimal Netsgst = 0;
+            decimal netcgst = 0;
+
+
+        }
+        @foreach (var product in Model.Products)
+        {
+            cgstTax = (product.Product.Tax / 2);
+            sgstTax = (product.Product.Tax / 2);
+            cgst = ((product.Product.UnitPrice * product.Qty) * cgstTax / 100);
+            sgst = ((product.Product.UnitPrice * product.Qty) * sgstTax / 100);
+
+
+            <tr>
+                <td>@product.Product.Id</td>
+                <td>@product.Product.ProductName</td>
+                <td>@product.Qty</td>
+                <td>@product.Product.UnitPrice</td>
+                <td>@(product.Product.Tax / 2) %</td>
+                <td>@cgst </td>
+                <td>@(product.Product.Tax / 2) %</td>
+                <td>@sgst </td>
+                <td>@(product.Product.UnitPrice * product.Qty)</td>
+            </tr>
+
+            totalBill += (product.Product.UnitPrice * product.Qty);
+
+            NetGST = totalBill * (product.Product.Tax / 100);
+            Netsgst = NetGST / 2;
+            netcgst = Netsgst;
+            balanceDue = (totalBill + netcgst + Netsgst);
+        }
+
+        @{
+
+        }
+        <tr>
+            <td colspan="6"> <b>Rupees</b>  <p id="inWords" style="display:inline;font-size:large;font-weight:700;"></p> <span style="font-size:large;font-weight:600"> Only . </span></td>
+            <td colspan="3">
+
+                SubTotal :<div id="totalBill" style="display:inline;">@totalBill</div>
+                <div>SGST : @Netsgst</div>
+                <div>CGST : @netcgst</div>
+                Balance Due:     <div style="font-size:large" id="balanceDue"> @balanceDue</div>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <p>
+                    HDFC BANK AC NO. 50200033545966 Branch Sahar Road Junction RTGS IFSC CODE HDFC0000668
+                    Terms & Conditions Terms & Condition Apply
+                </p>
+            </td>
+            <td colspan="4"> Signature</td>
+        </tr>
+
+    </table>
+    <p>
+
+    </p>
+    <script type="text/javascript">
+        var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+        var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+        function inWords(num) {
+            if ((num = num.toString()).length > 9) return 'overflow';
+            n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return; var str = '';
+            str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+            str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+            str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+            str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+            return str;
+        }
+        document.getElementById("inWords").innerHTML = inWords(parseFloat(document.getElementById("balanceDue").innerText));
+    </script>
+
+</body>
+</html>

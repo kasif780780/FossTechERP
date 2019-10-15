@@ -1,0 +1,96 @@
+﻿@model IEnumerable<FossERp.Models.Lead>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<style>
+    .table td, .table th {
+        padding: 6px 4px;
+    }
+
+    .table td {
+        font-size: 15px;
+    }
+
+    .heading-font {
+        font-family: 'Maitree', serif;
+    }
+</style>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Simple Full Width Table</h3>
+
+                    <div class="card-tools">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">«</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Lead Id</th>
+                                <th>Lead Creation Date</th>
+                                <th>Company name</th>
+                                <th>Contact Name</th>
+                                <th>Contact Email</th>
+
+                                <th>Company Mobile</th>
+
+                                <th></th>
+                              
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LeadID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LeadCreationDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                              
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyMobile)
+                                </td>
+                              
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.LeadID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.LeadID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.LeadID })
+                                </td>
+                            </tr>
+                            }
+                            </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
